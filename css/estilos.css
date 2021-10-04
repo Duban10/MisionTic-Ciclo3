@@ -1,0 +1,21 @@
+.row, .logo{
+    background: #000;
+    margin: 20px 0;
+    padding: 40px;
+}
+
+
+strong, h1 {
+    color: #fff;
+    font-size: 48px;
+    text-align: center;;
+}
+
+.col > button{
+    text-align: right;
+}
+
+.mt-5 > .col > .iniciarsesion{
+    margin-left: 180px;
+}
+
