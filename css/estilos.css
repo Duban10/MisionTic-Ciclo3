@@ -1,4 +1,4 @@
-.row, .logo{
+.logo{
     background: #000;
     margin: 20px 0;
     padding: 40px;
@@ -8,7 +8,9 @@
 strong, h1 {
     color: #fff;
     font-size: 48px;
-    text-align: center;;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+
 }
 
 .col > button{
@@ -16,6 +18,34 @@ strong, h1 {
 }
 
 .mt-5 > .col > .iniciarsesion{
-    margin-left: 180px;
+    /* margin-left: 180px; */
+    float: right;
+}
+
+body .perf{
+    background:#D8D8D8;
+    padding-top: 30px;
+}
+body .perf h1{
+    color: #000;
+    margin-bottom: 30px;
+   
+}
+.container .formulario_perfil{
+    margin-top: 50px;
+}
+body .perf img{
+    width: 250px;
+    height: 300px;
+    margin-left: 60px;
+}
+.row .btn_perfil{
+float: right;
+margin-bottom: 80px;
+margin-left: 10px;
+}
+.row .btn_foto{
+    margin-left: 60px;
+    margin-top: 10px;
 }
 

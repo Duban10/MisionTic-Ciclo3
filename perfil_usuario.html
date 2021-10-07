@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>CINELAND AMERICANO</title>
+</head>
+<body>
+    <div class="container perf">
+        <h1>PERFIL DE USUARIO</h1>
+        <div class="row formulario_perfil">            
+                <div class="col-4">
+                    <img src="img/perfil.png" alt="Foto de Perfil">
+                    <button type="submit" class=" btn_foto btn btn-success">Cargar Foto</button>
+                </div>           
+        
+                <div class="col-6">
+                <form>
+                    <div class="mb-3">
+                      <label for="cedula" class="form-label">Numero de Documento:</label>
+                      <input type="email" class="form-control" id="cedula" aria-describedby="emailHelp" disabled>
+                      
+                    </div>
+                    <div class="mb-3">
+                      <label for="nombre" class="form-label">Nombre:</label>
+                      <input type="text" class="form-control" id="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="apellidos">Apellidos:</label>
+                        <input type="text" class="form-control" id="apellidos">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="telefono">Telefono:</label>
+                        <input type="text" class="form-control" id="telefono">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="correo">Correo:</label>
+                        <input type="text" class="form-control" id="correo" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="contrasena">Contraseña:</label>
+                        <input type="text" class="form-control" id="contrasena" disabled>
+                     </div>
+
+                    <button type="submit" class=" btn_perfil btn btn-primary">Modificar</button>
+                    <button type="submit" class=" btn_perfil btn btn-danger">ATRAS</button>
+                  </form>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
