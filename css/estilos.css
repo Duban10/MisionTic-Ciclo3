@@ -1,9 +1,18 @@
-.logo{
-    background: #000;
+.row img{
+    
     margin: 20px 0;
-    padding: 40px;
+   
 }
-
+.row .pel{
+    color: #000;
+    
+}
+.py-5{
+    padding-top: 30px !important;
+}
+.mt-5{
+    margin-top: 0px !important;
+}
 
 strong, h1 {
     color: #fff;
@@ -47,5 +56,31 @@ margin-left: 10px;
 .row .btn_foto{
     margin-left: 60px;
     margin-top: 10px;
+}
+.container .nav{
+    margin-top: 10px;
+    
+}
+.container .pel_cart{
+    margin-top: 20px;
+}
+a {
+    color: #000;
+    text-decoration: none;
+}
+a:hover{
+    color: #000;
+}
+
+.carousel-item img{
+    width: 500px;
+    height: 250px;
+}
+.nav-link{
+    color: rgb(126, 16, 16);
+    margin-left: 30px;
+}
+.nav-link:hover{
+    color: rgb(126, 16, 16);
 }
 
