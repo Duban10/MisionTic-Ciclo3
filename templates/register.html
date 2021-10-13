@@ -8,12 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/estilos.css')}}">
 
     <title>Cineland - Register</title>
 
     <!-- Custom fonts for this template-->
     <link rel="icon" type="image/png" href="../static/img/ICONO.ico" />
-    <link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -31,40 +33,50 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"><img src="../static/img/registro.jpg" alt=""></div>
+                    <div class="col-lg-5 d-none d-lg-block "><img src="../static/img/registro.jpg" alt=""></div>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">!Crea una cuenta!</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" action="/guardar" method="post" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="Primer nombre">
+                                        <input type="text" class="form-control form-control-user" id="nombre" name="nombre"
+                                            placeholder="Nombres">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Segundo nombre">
+                                        <input type="text" class="form-control form-control-user" id="apellido" name="apellido"
+                                            placeholder="Apellidos">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                    <input type="email" class="form-control form-control-user" id="correo" name="correo"
                                         placeholder="Direccion de correo electrónico">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Contraseña">
+                                        <input type="text" class="form-control form-control-user"
+                                            id="documento" name="documento" placeholder="Numero de documento">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repite la contraseña">
+                                            id="contrasena" name="contrasena" placeholder="Contraseña">
                                     </div>
                                 </div>
-                                <a href="login" class="btn btn-primary btn-user btn-block">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user"
+                                            id="telefono" name="telefono" placeholder="Numero telefonico">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="" class="form-control form-control-user"
+                                            id="sexo" name="sexo" placeholder="Sexo">
+                                    </div>                                    
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Registrar cuenta
-                                </a>
+                                </button>
                                 <hr>
                                 <a href="/" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Registrarse con Google

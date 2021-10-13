@@ -1,7 +1,8 @@
-.row img{
-    
-    margin: 20px 0;
-   
+.encabezado img{    
+    margin: 20px 0;   
+}
+.nav-item {
+    margin-right: 10px;
 }
 .row .pel{
     color: #000;
@@ -26,10 +27,7 @@ strong, h1 {
     text-align: right;
 }
 
-.mt-5 > .col > .iniciarsesion{
-    /* margin-left: 180px; */
-    float: right;
-}
+
 
 body .perf{
     background:#D8D8D8;
@@ -83,5 +81,7 @@ a:hover{
 .nav-link:hover{
     color: rgb(126, 16, 16);
 }
+
+
 
 

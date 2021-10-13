@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/estilos.css')}}">
     <link rel="icon" type="image/png" href="../static/img/ICONO.ico" />
     <title>Buscar Peliculas - Cineland Americano</title>
 </head>
@@ -21,23 +21,20 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <b><a class="nav-link active" aria-current="page" href="cartelera">Cartelera</a></b>
+                    <b><a class="nav-link active" aria-current="page" href="login">Inicio de Sesión</a></b>
                   </li>
                   <li class="nav-item">
-                    <b><a class="nav-link" href="perfilUser">Perfil</a></b>
-                  </li>
-                 
-                  <li class="nav-item">
-                    <b><a class="nav-link disabled" href="estrenos">Proximos Estrenos</a></b>
-                  </li>
+                    <b><a class="nav-link" href="registro">Registrarse</a></b>
+                  </li>                
+                  
                 </ul>
-                <form class="d-flex">
+                <form class="d-flex" name="buscar" action="" method="POST">
                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">BUSCAR</button>
+                  <a class="btn btn-outline-success" type="submit" href="/" >BUSCAR</a>
                 </form>
               </div>
             </div>
-          </nav>
+        </nav>
           <div class="row pel_cart">
             <div class="col-12 col-sm-6 col-lg-3 mb-4">
               <div class="card">

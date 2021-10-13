@@ -13,7 +13,7 @@
 
     <!-- Custom fonts for this template-->
     <link rel="icon" type="image/png" href="../static/img/ICONO.ico" />
-    <link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -37,21 +37,22 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <!-- En el siguiente div se asigna la imagen -->
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"><img src="../static/img/login.jpg" alt=""></div>
+                            <div class="col-lg-6 d-none d-lg-block "
+                            ><img src="../static/img/login.jpg" alt=""></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">!Bienvenido de nuevo!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="/ingresar" method="post" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Introduzca la dirección de correo electrónico...">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="NumDoc" name="document" aria-describedby="emailHelp"
+                                                placeholder="Introduzca su numero de Documento">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Contraseña">
+                                                id="passw" name="passw" placeholder="Contraseña">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -59,9 +60,9 @@
                                                 <label class="custom-control-label" for="customCheck">Recuérdeme</label>
                                             </div>
                                         </div>
-                                        <a href="/" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                            Acceso
-                                        </a>
+                                        </button>
                                         <hr>
                                         <a href="/" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Iniciar sesión con Google
