@@ -164,7 +164,7 @@ def actualizar():
                 #Acciones
                 cur.execute("UPDATE usuario SET nombre = ?, apellido = ?, telefono = ?, correo = ? WHERE documento = ?;", [nombre, apellido, telefono, correo, documento])
                 conn.commit()#Confirmación de inserción de datos :)
-                flash('Contacto Actualizado Correctamente')
+                flash('Perfil Actualizado Correctamente')
                 return redirect(url_for('perfUsuario'))
         return "No se pudo actualizar T_T"
     else:
