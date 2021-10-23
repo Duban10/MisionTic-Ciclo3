@@ -1,15 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">    
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/estilos.css')}}">
+    
+  </head>
     <link rel="icon" type="image/png" href="../static/img/ICONO.ico" />
     <title>Perfil - Cineland Americano</title>
 </head>
+
+
 <body>
+  
     <nav class="navbar navbar-expand-lg navbar-light bg-light" >
         <div class="container-fluid">
           <img src="../static/img/logo.png" alt="Este es el logo" width="130" height="30"></img>
@@ -21,6 +27,9 @@
             <ul class="nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <b><a class="nav-link" aria-current="page" href="/cartelera/">Cartelera</a></b>
+              </li>
+              <li class="nav-item">
+                <b><a class="nav-link" aria-current="page" href="/cerrarSesion/">Cerrar Sesión</a></b>
               </li>
               
              
@@ -37,40 +46,65 @@
                     <img src="../static/img/perfil.png" alt="Foto de Perfil">
                     <button type="submit" class=" btn_foto btn btn-success">Cargar Foto</button>
                 </div>           
-        
+                
                 <div class="col-6">
-                <form>
+                
+                <form action="/modif/" method="post" enctype="multipart/form-data"> 
                     <div class="mb-3">
                       <label for="cedula" class="form-label">Numero de Documento:</label>
-                      <input type="email" class="form-control" id="cedula" aria-describedby="emailHelp" disabled>
-                      
+                      <input type="text" value="" class="form-control" id="cedula" name="cedula" >                      
                     </div>
                     <div class="mb-3">
                       <label for="nombre" class="form-label">Nombre:</label>
-                      <input type="text" class="form-control" id="nombre">
+                      <input type="text" value="" class="form-control" id="nombre" name="nombre">
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="apellidos">Apellidos:</label>
-                        <input type="text" class="form-control" id="apellidos">
+                        <input type="text" class="form-control" id="apellido" name="apellido">
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="telefono">Telefono:</label>
-                        <input type="text" class="form-control" id="telefono">
+                        <input type="text" class="form-control" id="telefono" name="telefono">
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="correo">Correo:</label>
-                        <input type="text" class="form-control" id="correo" disabled>
+                        <input type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="contrasena">Contraseña:</label>
-                        <input type="text" class="form-control" id="contrasena" disabled>
+                        <input type="text" class="form-control" id="contrasena" name="contrasena" disabled>
                      </div>
-
+                  
                     <button type="submit" class=" btn_perfil btn btn-primary">Modificar</button>
-                    <button type="submit" class=" btn_perfil btn btn-danger" >ATRAS</button>
-                  </form>
-                </div>
+                    <!-- <a href="edit/" class=" btn_perfil btn btn-warning" >VER</a> -->
+                    <a href="/cartelera/" class=" btn_perfil btn btn-danger" >ATRAS</a>                   
+                   
+                </form>                
+                  
         </div>
+              <div class="col-md-6 offset-md-3">
+                  {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                  {% for message in messages %}
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                      
+                    </button>
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+                  {% endwith %}
+                </div>                
+              </div>
+                
+        
     </div>
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
 </body>
 </html>

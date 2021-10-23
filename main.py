@@ -2,6 +2,7 @@ from re import A
 from flask import *
 import os
 import sqlite3
+from werkzeug.exceptions import MethodNotAllowed
 from werkzeug.security import check_password_hash, generate_password_hash
 variableGlobalVacia = None
 
@@ -29,6 +30,10 @@ def principal():
 @app.route("/login/")
 def login():
     return render_template("login.html")
+
+@app.route("/loginADM/")
+def loginADM():
+    return render_template("loginADM.html")
 
 
 @app.route("/registro", methods=["GET","POST"])
@@ -86,6 +91,29 @@ def ingresar():
                     return render_template("login.html")    
         return "Error en la conexión y proceso, revise por favor :'("                                    
     return "No pudo ingresar"
+    
+
+@app.route('/ingresarADM', methods=["GET","POST"])
+def ingresarADM():    
+    if request.method == "POST":
+        documento = request.form['document']
+        contrasena = request.form['passw']        
+        with sqlite3.connect("cineBD.db") as con:            
+            cur = con.cursor()
+            variablevector = cur.execute(f"select * from administrador where documento = '{documento}'").fetchone()            
+            if variablevector != None:
+                contraInterna = variablevector[5]
+                docInterno = variablevector[0]
+                session.clear()
+            # if check_password_hash(variableInterna, contrasena):
+                if contraInterna == "123" and docInterno == 10:            
+                    session["documento"] = documento
+                    return render_template("indexADM.html", documento=documento)
+                    
+            # else:
+            #     return render_template("login.html")    
+        return "Error en la conexión y proceso, revise por favor :'("                                    
+    return "No pudo ingresar"
 
 
 @app.before_request
@@ -115,10 +143,119 @@ def cartelera():
 
 @app.route("/perfilUser/", methods=["GET","POST"])
 def perfUsuario():
-    if 'documento' in session:
+    if 'documento' in session:        
         return render_template("perfil_usuario.html")
     else:
         return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/login/'>Redirección</a>" 
+
+@app.route('/modif/', methods=["POST"])
+def actualizar():
+    if 'documento' in session:      
+        if request.method == "POST":
+            print("LLEGO")
+            documento = request.form['cedula']
+            nombre = request.form['nombre']
+            apellido = request.form['apellido']
+            telefono = request.form['telefono']
+            correo = request.form['correo']       
+            with sqlite3.connect("cineBD.db") as conn:#Manejador de contexto ->conexion
+                cur = conn.cursor()#manipula la db
+                #se va a usar el PreparedStatement
+                #Acciones
+                cur.execute("UPDATE usuario SET nombre = ?, apellido = ?, telefono = ?, correo = ? WHERE documento = ?;", [nombre, apellido, telefono, correo, documento])
+                conn.commit()#Confirmación de inserción de datos :)
+                flash('Contacto Actualizado Correctamente')
+                return redirect(url_for('perfUsuario'))
+        return "No se pudo actualizar T_T"
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/login/'>Redirección</a>" 
+
+
+@app.route("/formulario/")
+def formulario():
+    if 'documento' in session:
+        return render_template("formulario.html")
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>" 
+       
+
+
+@app.route("/formUpdate/")
+def formUpdate():
+    if 'documento' in session:
+        return render_template("formUpdate.html")
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>" 
+
+
+
+@app.route("/formDelete/")
+def formDelete():
+    if 'documento' in session:
+        return render_template("formDelete.html")
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>" 
+
+
+@app.route('/actualizarpelicula/', methods=["GET","POST"])
+def actualizarPelicula():    
+    if 'documento' in session:
+        if request.method == "POST":
+            ident = request.form['idPelicula']
+            nombre = request.form['nombre']
+            duracion = request.form['duracion']
+            genero = request.form['genero']       
+            descripcion = request.form['descripcion'] 
+            with sqlite3.connect("cineBD.db") as con:
+                cur = con.cursor()
+                cur.execute("UPDATE pelicula SET nombre = ?, duracion = ?, genero = ?, descripcion = ? WHERE idpelicula = ?; ", [nombre, duracion, genero, descripcion, ident])
+                con.commit()
+                #return "PELICULA GUARDADA EXITOSAMENTE"
+                flash('Pelicula Actualizada Correctamente')
+                return redirect(url_for('formUpdate'))
+        return " ERROR !!! No se pudo guardar"
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/formulario/'>Redirección</a>" 
+
+@app.route('/formulario/crearpelicula/', methods=["GET","POST"])
+def crearPelicula():    
+    if 'documento' in session:
+        if request.method == "POST":
+            ident = request.form['idPelicula']
+            nombre = request.form['nombre']
+            duracion = request.form['duracion']
+            genero = request.form['genero']       
+            descripcion = request.form['descripcion'] 
+            with sqlite3.connect("cineBD.db") as con:
+                cur = con.cursor()
+                cur.execute("insert into pelicula(idpelicula, nombre, duracion, genero, descripcion) values (?, ?, ?, ?, ?)", (ident, nombre, duracion, genero, descripcion))
+                con.commit()
+                #return "PELICULA GUARDADA EXITOSAMENTE"
+                flash('Pelicula Creada Correctamente')
+                return redirect(url_for('formulario'))
+        return " ERROR !!! No se pudo guardar"
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/formulario/'>Redirección</a>" 
+
+@app.route('/eliminarpelicula/', methods=["GET","POST"])
+def eliminarPelicula():    
+    if 'documento' in session:
+        if request.method == "POST":
+            idpel = request.form['idPelicula']
+            with sqlite3.connect("cineBD.db") as con:
+                con.row_factory = sqlite3.Row
+                cur = con.cursor()
+                cur.execute("delete from pelicula where idpelicula = ?", [idpel])
+                if con.total_changes > 0:                
+                    #return "PELICULA GUARDADA EXITOSAMENTE"
+                    flash('Pelicula Borrada Correctamente')
+                    return redirect(url_for('formDelete'))
+                else:
+                    flash('NO ENCONTRO NINGUNA PELICULA CON ESE ID')
+                    return render_template("formulario.html")
+        return " ERROR !!! No se pudo guardar"
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/formulario/'>Redirección</a>" 
 
 if __name__=='__main__':
     app.run(debug=True)
