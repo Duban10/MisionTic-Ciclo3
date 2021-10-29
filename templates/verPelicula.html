@@ -63,12 +63,12 @@
                                     <a class="nav-link" href="/verPeliculas/">Ver Cartelera</a>
                                 </nav>
                             </div>
-                            
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Usuarios
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     
@@ -119,57 +119,42 @@
                 <main>
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">!Elimina una Pelicula!</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Peliculas en Cartelera</h1>
                         </div>
-                        <form class="user" action="/eliminarpelicula/" method="POST" enctype="multipart/form-data">
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" id="idPelicula" name="idPelicula"
-                                        placeholder="Id de Pelicula">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="nombre" name="nombre"
-                                        placeholder="Nombre de la pelicula">
-                                </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Tabla de datos
                             </div>
-                           <br>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user"
-                                        id="duracion" name="duracion" placeholder="Duración de la pelicula">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user"
-                                        id="genero" name="genero" placeholder="Genero de la pelicula">
-                                </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Duración</th>
+                                            <th scope="col">Genero</th>
+                                            <th scope="col">Descripción</th>    
+                                            <th scope="col">Detalle de Pelicula</th>                                        
+                                        </tr>
+                                    </thead>
+                                   <!-- esto es de la interfaz de ADM -->
+                                    <tbody>
+                                        {% for r in variablevector %}
+                                        <tr>
+                                            <td>{{ r[0] }}</td>
+                                            <td>{{ r[1] }}</td>
+                                            <td>{{ r[2] }}</td>
+                                            <td>{{ r[3] }}</td>
+                                            <td>{{ r[4] }}</td>
+                                            <td><a href="/detPelicula/{{ v[0] }}" class="btn btn-primary">Detalle</a></td>
+                                            
+                                        </tr> 
+                                        {% endfor %}                                      
+                                    </tbody>
+                                </table>
                             </div>
-                            <br>
-                            <div class="input-group">
-                                <span class="input-group-text">Descripción</span>
-                                <textarea class="form-control" name="descripcion" id="descripcion" aria-label="Descripción"></textarea>
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-danger btn-user btn-block">
-                               Eliminar
-                            </button>
-                           
-                            <hr>                                                    
-                        </form>
-                        <hr>
-                        <div class="col-md-6 offset-md-3">
-                            {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                            {% for message in messages %}
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                              {{ message }}
-                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                
-                              </button>
-                            </div>
-                            {% endfor %}
-                            {% endif %}
-                            {% endwith %}
-                          </div>       
+                        </div>
                         
                     </div>
                 </main>

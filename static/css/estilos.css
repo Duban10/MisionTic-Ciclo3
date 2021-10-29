@@ -1,3 +1,7 @@
+body{
+    background-color:#E6E6E6;
+}
+
 .encabezado img{    
     margin: 20px 0;   
 }
@@ -81,6 +85,7 @@ a:hover{
 .nav-link:hover{
     color: rgb(126, 16, 16);
 }
+
 
 
 

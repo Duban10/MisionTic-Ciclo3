@@ -10,7 +10,7 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
         <link href="../static/css/styles.css" rel="stylesheet" />
-        <link rel="icon" type="image/png" href="../static/img/ICONO.ico" />
+        <link rel="icon" type="image/png" href="../static/img/icono3.ico" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script> <!-- iconos de navegacion -->
     </head>
     <body class="sb-nav-fixed">
@@ -60,6 +60,7 @@
                                     <a class="nav-link" href="/formulario/">Crear</a>
                                     <a class="nav-link" href="/formUpdate/">Modificar</a>
                                     <a class="nav-link" href="/formDelete/">Eliminar</a>
+                                    <a class="nav-link" href="/verPeliculas/">Ver Cartelera</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -67,17 +68,20 @@
                                 Usuarios
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Autenticación
+                                        CRUD
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Registro</a>
-                                            <a class="nav-link" href="password.html">Recuperación de Contraseña</a>
+                                            <a class="nav-link" href="/login">Login</a>
+                                            <a class="nav-link" href="/registro">Registro</a>
+                                            <a class="nav-link" href="/recuperacion">Recuperación de Contraseña</a>
+                                            <a class="nav-link" href="/usuarios/">Ver usuarios registrados</a>
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">

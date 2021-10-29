@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Cine Americano</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/estilos.css')}}">
+        <link rel="stylesheet" type="text/js" href="{{ url_for('static', filename='js/funciones.js')}}">
+        <link rel="icon" type="image/png" href="../static/img/icono3.ico" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    {% for d in det %}
+    <div class="container">  
+        <div class="container">
+            <div class="card-header">
+                Ver funcion 
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Datos del equipo</h5>
+                <p class="card-text">    
+                    <h1>Funciones para la pelicula: </h1>
+                    <input id="txtId" value="{{d[1]}}" class="form-control" type="hidden" name="txtId">
+                </p>
+            </div>
+    </div> 
+    {% endfor %}
+</body>
+</html>

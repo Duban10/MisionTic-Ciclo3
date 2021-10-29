@@ -10,19 +10,6 @@ app = Flask(__name__)
 
 app.secret_key = os.urandom(24)
 
-# lista_usuarios = ["Grey","Kathlen", "Miguel", "Orlando", "Duban"]
-# lista_peliculas = {
-#     "Pelicula1": "Pelicula 1 - Descripcion ...",
-#     "Pelicula2": "Pelicula 2 - Descripcion ...",
-#     "Pelicula3": "Pelicula 3 - Descripcion ...",
-#     "Pelicula4": "Pelicula 4 - Descripcion ...",
-#     "Pelicula5": "Pelicula 5 - Descripcion ...",
-#     "Pelicula6": "Pelicula 6 - Descripcion ...",
-#     "Pelicula7": "Pelicula 7 - Descripcion ...",
-#     "Pelicula8": "Pelicula 8 - Descripcion ..."
-# }
-
-
 @app.route("/", methods=["GET","POST"])
 def principal():
     return render_template("index.html")
@@ -116,6 +103,11 @@ def ingresarADM():
     return "No pudo ingresar"
 
 
+
+
+
+
+
 @app.before_request
 def puntoLogin():
     session.get("documento")#Quiere guardar la información, puede ser cualquier cosa
@@ -133,6 +125,38 @@ def index():
         return redirect(url_for('login'))    # me redirige a la funcion login 
     return render_template('cartelera.html')
 
+@app.route("/verCartel/")
+def verCartelera():
+    if 'documento' in session:       
+        with sqlite3.connect("cineBD.db") as con:            
+            cur = con.cursor()
+            variableCart = cur.execute("select * from pelicula").fetchall()           
+            return render_template("verCartelera.html", variableCart=variableCart)            
+    else:
+            return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>"  
+        
+@app.route("/usuarios/", methods=["GET", "POST"])
+def verUsuarios():
+    if 'documento' in session:       
+        with sqlite3.connect("cineBD.db") as con:            
+            cur = con.cursor()
+            variableUsu = cur.execute("select * from usuario").fetchall()           
+            return render_template("verUsuario.html", variableUsu=variableUsu)            
+    else:
+            return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>" 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route("/cartelera/", methods=["GET", "POST"])
 def cartelera():
@@ -141,12 +165,68 @@ def cartelera():
     else:
         return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/login/'>Redirección</a>" 
 
+
 @app.route("/perfilUser/", methods=["GET","POST"])
 def perfUsuario():
     if 'documento' in session:        
         return render_template("perfil_usuario.html")
     else:
         return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/login/'>Redirección</a>" 
+
+@app.route("/formulario/")
+def formulario():
+    if 'documento' in session:
+        return render_template("formulario.html")
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>"    
+
+
+@app.route("/formUpdate/")
+def formUpdate():
+    if 'documento' in session:
+        return render_template("formUpdate.html")
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>" 
+
+
+@app.route("/formDelete/")
+def formDelete():
+    if 'documento' in session:
+        return render_template("formDelete.html")
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>" 
+
+
+@app.route("/verPeliculas/")
+def verPeliculas():
+    if 'documento' in session:       
+        with sqlite3.connect("cineBD.db") as con:            
+            cur = con.cursor()
+            variablevector = cur.execute("select * from pelicula").fetchall()           
+            return render_template("verPelicula.html", variablevector=variablevector)            
+    else:
+            return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>"                               
+
+@app.route("/detPelicula/<id>")
+def detPelicula(id):
+    if 'documento' in session:
+         with sqlite3.connect("cineBD.db") as con:            
+            cur = con.cursor()
+            det = cur.execute("select * from pelicula WHERE idpelicula= ?", id).fetchone()           
+            return render_template("detallePelicula.html", det=det) 
+        
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/formulario/'>Redirección</a>" 
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/modif/', methods=["POST"])
 def actualizar():
@@ -170,31 +250,6 @@ def actualizar():
     else:
         return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/login/'>Redirección</a>" 
 
-
-@app.route("/formulario/")
-def formulario():
-    if 'documento' in session:
-        return render_template("formulario.html")
-    else:
-        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>" 
-       
-
-
-@app.route("/formUpdate/")
-def formUpdate():
-    if 'documento' in session:
-        return render_template("formUpdate.html")
-    else:
-        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>" 
-
-
-
-@app.route("/formDelete/")
-def formDelete():
-    if 'documento' in session:
-        return render_template("formDelete.html")
-    else:
-        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>" 
 
 
 @app.route('/actualizarpelicula/', methods=["GET","POST"])
@@ -256,6 +311,8 @@ def eliminarPelicula():
         return " ERROR !!! No se pudo guardar"
     else:
         return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/formulario/'>Redirección</a>" 
+
+
 
 if __name__=='__main__':
     app.run(debug=True)

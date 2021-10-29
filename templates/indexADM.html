@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title>Cine Americano</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
         <link href="../static/css/styles.css" rel="stylesheet" />
-        <link rel="icon" type="image/png" href="../static/img/ICONO.ico" />
+        <link rel="icon" type="image/png" href="../static/img/icono3.ico" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script> <!-- iconos de navegacion -->
     </head>
     <body class="sb-nav-fixed">
@@ -34,7 +34,7 @@
                         <li><a class="dropdown-item" href="#!">Perfil</a></li>
                         <!-- <li><a class="dropdown-item" href="#!">Cerrar Sesion</a></li> -->
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Cerrar Sesión</a></li>
+                        <li><a class="dropdown-item" href="/cerrarSesion/">Cerrar Sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -60,28 +60,31 @@
                                     <a class="nav-link" href="formulario">Crear</a>
                                     <a class="nav-link" href="formUpdate">Modificar</a>
                                     <a class="nav-link" href="formDelete">Eliminar</a>
+                                    <a class="nav-link" href="verPeliculas">Ver Cartelera</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Usuarios
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
+                            </a>                            
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Autenticación
+                                        CRUD
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Registro</a>
-                                            <a class="nav-link" href="password.html">Recuperación de Contraseña</a>
+                                            <a class="nav-link" href="/login">Login</a>
+                                            <a class="nav-link" href="/registro">Registro</a>
+                                            <a class="nav-link" href="/recuperacion">Recuperación de Contraseña</a>
+                                            <a class="nav-link" href="/usuarios/">Ver usuarios registrados</a>
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Reservas
+                                        Funciones
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
@@ -89,7 +92,7 @@
                                             <!-- <a class="nav-link" href="401.html">401 Page</a>
                                             <a class="nav-link" href="404.html">404 Page</a>
                                             <a class="nav-link" href="500.html">500 Page</a> -->
-                                            <a class="nav-link" href="#">Reservas pelicula a usuario</a>
+                                            <a class="nav-link" href="#">Crear Funcion</a>
                                         </nav>
                                     </div>
                                 </nav>
