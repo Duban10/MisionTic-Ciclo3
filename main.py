@@ -14,6 +14,8 @@ app.secret_key = os.urandom(24)
 def principal():
     return render_template("index.html")
 
+
+
 @app.route("/login/")
 def login():
     return render_template("login.html")
@@ -30,6 +32,8 @@ def registro():
 @app.route("/recuperacion", methods=["GET","POST"])
 def recuperacion():
     return render_template("forgot-password.html")
+
+
 
 
 @app.route('/cerrarSesion/', methods=["POST", "GET"])
@@ -152,10 +156,20 @@ def verUsuarios():
 
 
 
+@app.route("/indexA/", methods=["GET", "POST"])
+def indexADM():
+    if 'documento' in session:
+        return render_template("indexADM.html")
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/loginADM/'>Redirección</a>" 
 
 
-
-
+@app.route("/eliminar/")
+def eliminarUsuario():
+    if 'documento' in session:
+        return render_template("deleteUsu.html")
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/login/'>Redirección</a>" 
 
 
 @app.route("/cartelera/", methods=["GET", "POST"])
@@ -218,7 +232,25 @@ def detPelicula(id):
     else:
         return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/formulario/'>Redirección</a>" 
 
-
+@app.route("/eliminarUsu/", methods=["GET","POST"])
+def eliminarUsu():
+    if 'documento' in session:
+        if request.method == "POST":
+            idusu = request.form['idusuario']
+            with sqlite3.connect("cineBD.db") as con:
+                con.row_factory = sqlite3.Row
+                cur = con.cursor()
+                cur.execute("delete from usuario where documento = ?", [idusu])
+                if con.total_changes > 0:                
+                    #return "PELICULA GUARDADA EXITOSAMENTE"
+                    flash('Usuario Borrado Correctamente')
+                    return render_template("deleteUsu.html")
+                else:
+                    flash('NO ENCONTRO NINGUNA PELICULA CON ESE ID')
+                    return render_template("formulario.html")
+        return " ERROR !!! No se pudo guardar"
+    else:
+        return "NO HA INICIADO SESION, INICIA SESIO AQUI <a href='/formulario/'>Redirección</a>"
 
 
 
