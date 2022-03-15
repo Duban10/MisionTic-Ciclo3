@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/estilos.css')}}">
 
-    <title>Cineland - Register</title>
+    <title>Registro WPOSS</title>
 
     <!-- Custom fonts for this template-->
     <link rel="icon" type="image/png" href="../static/img/icono3.ico" />
@@ -33,7 +33,7 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block "><img src="../static/img/registro.jpg" alt=""></div>
+                    <div class="col-lg-5 d-none d-lg-block imagenReg"><img src="../static/img/registro.jpg" alt=""></div>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
@@ -43,37 +43,28 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="nombre" name="nombre"
-                                            placeholder="Nombres">
+                                            placeholder="Nombres" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="apellido" name="apellido"
-                                            placeholder="Apellidos">
+                                            placeholder="Apellidos" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="correo" name="correo"
-                                        placeholder="Direccion de correo electrónico">
+                                        placeholder="Direccion de correo electrónico" required>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user"
-                                            id="documento" name="documento" placeholder="Numero de documento">
+                                            id="documento" name="documento" placeholder="Numero de documento" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="contrasena" name="contrasena" placeholder="Contraseña">
+                                            id="contrasena" name="contrasena" placeholder="Contraseña" required>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user"
-                                            id="telefono" name="telefono" placeholder="Numero telefonico">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="" class="form-control form-control-user"
-                                            id="sexo" name="sexo" placeholder="Sexo">
-                                    </div>                                    
-                                </div>
+                                
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Registrar cuenta
                                 </button>
